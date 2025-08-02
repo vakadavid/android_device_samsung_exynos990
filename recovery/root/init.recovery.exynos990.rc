@@ -8,5 +8,11 @@ on fs
     wait /dev/block/platform/${ro.boot.boot_devices}
     symlink /dev/block/platform/${ro.boot.boot_devices} /dev/block/bootdevice
 
+# Fix flashlight on orangefox
+on property:ro.orangefox.boot=1
+    mkdir /tmp/flashlight
+    write /tmp/flashlight/max_brightness "1"
+    symlink /sys/devices/virtual/camera/flash/rear_flash /tmp/flashlight/brightness
+
 on boot
     start health-hal-2-1
