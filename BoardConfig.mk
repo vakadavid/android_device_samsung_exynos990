@@ -13,13 +13,6 @@ TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := cortex-a76
 
-TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-2a
-TARGET_2ND_CPU_ABI := armeabi-v7a
-TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_PLATFORM)
 TARGET_NO_BOOTLOADER := true
@@ -93,7 +86,7 @@ ALLOW_MISSING_DEPENDENCIES=true
 TW_DEVICE_VERSION := ExtremeXT_v4
 TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone7/temp"
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
 TW_Y_OFFSET := 100
 TW_H_OFFSET := -100
 TW_USE_SAMSUNG_HAPTICS := true
