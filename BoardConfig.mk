@@ -83,12 +83,14 @@ TARGET_USES_MKE2FS := true
 
 # TWRP specific build flags
 ALLOW_MISSING_DEPENDENCIES=true
+TARGET_USES_64_BIT_BINDER := true
+TW_NO_LEGACY_PROPS := true
 TW_DEVICE_VERSION := ExtremeXT_v4
 TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
-TW_Y_OFFSET := 100
-TW_H_OFFSET := -100
+TW_Y_OFFSET := 0
+TW_H_OFFSET := 0
 TW_USE_SAMSUNG_HAPTICS := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
