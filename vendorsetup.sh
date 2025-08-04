@@ -22,6 +22,8 @@ export FOX_SETTINGS_ROOT_DIRECTORY=/external_sd
 export FOX_MISCELLANEOUS_ROOT_DIRECTORY=/external_sd
 export FOX_BACKUP_ROOT_DIRECTORY=/external_sd
 export FOX_USE_UPDATED_MAGISKBOOT=1
+export FOX_USE_FSCK_EROFS_BINARY=1
+export OF_DONT_PATCH_ENCRYPTED_DEVICE="1"
 export FOX_VARIANT=FBEv2next
 export OF_FORCE_CASEFOLDING=1
 export OF_HIDE_NOTCH=1
@@ -45,3 +47,27 @@ export OF_FL_PATH1="/tmp/flashlight"
         export OF_FL_PATH2=""
         export OF_FLASHLIGHT_ENABLE=1
 export OF_RUN_POST_FORMAT_PROCESS=1
+
+# Magisk
+function download_magisk(){
+	# Usage: download_magisk <destination_path>
+	local DEST=$1
+	if [ -n "${DEST}" ]; then
+		if [ ! -e ${DEST} ]; then
+			echo "Downloading the Latest Release of Magisk..."
+			local LATEST_MAGISK_URL=$(curl -sL https://api.github.com/repos/topjohnwu/Magisk/releases/latest | grep browser_download_url | grep Magisk- | cut -d : -f 2,3 | tr -d '"')
+			mkdir -p $(dirname ${DEST})
+			wget -q ${LATEST_MAGISK_URL} -O ${DEST} || wget ${LATEST_MAGISK_URL} -O ${DEST}
+			local RCODE=$?
+			if [ "$RCODE" = "0" ]; then
+				echo "Successfully Downloaded Magisk to ${DEST}!"
+				echo "Done!"
+			else
+				echo "Failed to Download Magisk to ${DEST}!"
+			fi
+		fi
+	fi
+}
+export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk.zip
+download_magisk $FOX_USE_SPECIFIC_MAGISK_ZIP
+
