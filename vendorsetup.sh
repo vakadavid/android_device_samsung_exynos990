@@ -59,7 +59,7 @@ function download_magisk(){
 	if [ -n "${DEST}" ]; then
 		if [ ! -e ${DEST} ]; then
 			echo "Downloading the Latest Release of Magisk..."
-			local LATEST_MAGISK_URL=$(curl -sL https://api.github.com/repos/topjohnwu/Magisk/releases/tag/v30.5 | grep browser_download_url | grep Magisk- | cut -d : -f 2,3 | tr -d '"')
+			local LATEST_MAGISK_URL=$(curl -sL https://api.github.com/repos/topjohnwu/Magisk/releases/v30.5 | grep browser_download_url | grep Magisk- | cut -d : -f 2,3 | tr -d '"')
 			mkdir -p $(dirname ${DEST})
 			wget -q ${LATEST_MAGISK_URL} -O ${DEST} || wget ${LATEST_MAGISK_URL} -O ${DEST}
 			local RCODE=$?
